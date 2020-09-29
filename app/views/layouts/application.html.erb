@@ -10,6 +10,40 @@
   </head>
 
   <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="../">
+            <p>Library App</p>
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <% if user_signed_in? %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Account</a>
+                <div class="navbar-dropdown">
+                  <%= link_to 'New Book', new_book_path, :class => "navbar-item" %>
+                  <%= current_user.email %>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item">
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => "navbar-item"  %>
+        			<%= link_to "Login", new_user_session_path, :class => "navbar-item"  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

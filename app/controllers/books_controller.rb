@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /books
   # GET /books.json
@@ -10,6 +11,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @book = Book.find(params[:id])
   end
 
   # GET /books/new
@@ -20,6 +22,32 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
   end
+
+  # borrow_book
+  def borrow_book
+    @book = Book.find(params[:id])
+    @book.borrow = true 
+    @book.user = session[:user_id] 
+
+    if @book.save! 
+      redirect_to @book, notice: 'book wass borrowed'
+    else  
+      render :show 
+    end 
+  end 
+
+  # return_book 
+  def return_book
+    @book = Book.find(params[:id])
+    @book.return = true 
+    @book.user = session[:user_id]
+    
+    if @book.borrow && (book.user_id != @current_user.id)
+      redirect_to @book, notice: 'book was return'
+    else  
+      render :show
+    end 
+  end 
 
   # POST /books
   # POST /books.json
@@ -36,6 +64,7 @@ class BooksController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
@@ -61,7 +90,10 @@ class BooksController < ApplicationController
     end
   end
 
+
   private
+
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
@@ -69,6 +101,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :isbn, :author)
+      params.require(:book).permit(:title, :isbn, :author, :borrow)
     end
 end

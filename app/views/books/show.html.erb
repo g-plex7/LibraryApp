@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
+<section class="section">
+  <div class="columns">
+    <div class="column is-8 is-offset-2">
+      <div class="content is-medium">
+        <h2 class="subtitle is-4"><%= @book.author %></h2>
+        <h1 class="title"><%= @book.title %></h1>
+        <p><%= @book.isbn %></p>          
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+        <% if @book.borrow %>
+          <% if @book.user_id == current_user.id %>
+            <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
+          <% else %>
+            Pending....
+          <% end %>
+        <% else %>
+          
+        <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
