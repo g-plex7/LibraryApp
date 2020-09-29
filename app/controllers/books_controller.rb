@@ -30,7 +30,7 @@ class BooksController < ApplicationController
     @book.user = session[:user_id] 
 
     if @book.save! 
-      redirect_to @book, notice: 'book wass borrowed'
+      redirect_to @book, message: 'book wass borrowed'
     else  
       render :show 
     end 
