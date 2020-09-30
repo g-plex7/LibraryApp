@@ -6,16 +6,9 @@
         <h1 class="title"><%= @book.title %></h1>
         <p><%= @book.isbn %></p>          
 
-        <% if @book.borrow %>
-          <% if @book.user_id == current_user.id %>
-            <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
-          <% else %>
-            <p id="notice"><%= message %></p>
-          <% end %>
-        <% else %>
-          
-        <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
-        <% end %>
+          <p id="notice"><%= notice %></p>
+          <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
+          <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
       </div>
     </div>
   </div>

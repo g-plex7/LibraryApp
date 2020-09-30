@@ -10,7 +10,11 @@
             <tr>
               <td width="5%"><i class="fa fa-bell-o"></i></td>
               <td class="subtitle is-6"><%= book.title %></td>
-              <td class="level-right"><%= link_to 'Show', book, :class => "button is-warning" %></td>
+              <% if book.borrow %>
+                <td class="level-right"><%= link_to 'Show', book, :class => "button is-warning" %></td>
+              <% else %>
+                <p>book is borrowed</p>
+              <% end %>
             </tr> 
           <% end %>                           
           </tbody>
