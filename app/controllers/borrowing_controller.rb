@@ -14,7 +14,8 @@ class BorrowingController < ApplicationController
     def return_book
         @book = Book.find(params[:id])
         @book.return = true  
-        @book.user = session[:user_id]
+        @book.borrow = false
+        @book.user_id = session[:user_id]
         
         if @book.save! 
             redirect_to @book, notice: 'book was return'
