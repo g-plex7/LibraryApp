@@ -9,13 +9,13 @@
           <p id="notice"><%= notice %></p>
          
          
+        <% if @has_borrowed %>
           <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
+          <p>Pending.....</p>
+        <% else %>
           <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
-          <% if @book. %>
-            
-          <% else %>
-            
-          <% end %>
+        <% end  %>
+          
       </div>
     </div>
   </div>

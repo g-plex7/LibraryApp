@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_035725) do
     t.boolean "borrow"
     t.integer "user_id"
     t.boolean "return"
-    t.index "\"user_id\", \"created_on\"", name: "index_books_on_user_id_and_created_on", unique: true
   end
 
   create_table "borrowings", force: :cascade do |t|

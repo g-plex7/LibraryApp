@@ -1,6 +1,8 @@
 class BorrowingController < ApplicationController
     def borrow_book 
         @book = Book.find(params[:id])
+        @has_borrowed = Book.where(user_id: session[:user_id]).exists?
+        # @has_borrowed = true
         @book.borrow = true  
         @book.user_id = session[:user_id]
 
