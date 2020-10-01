@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :books 
 
   # borrow book 
-  get 'books/:id/borrow' => 'books#borrow_book', :as => :borrow_book
-  get 'books/:id/return' => 'books#return_book', :as => :return_book
+  get 'books/:id/borrow' => 'borrowing#borrow_book', :as => :borrow_book
+  get 'books/:id/return' => 'borrowing#return_book', :as => :return_book
 end

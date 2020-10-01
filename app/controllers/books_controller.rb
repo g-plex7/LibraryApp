@@ -24,30 +24,30 @@ class BooksController < ApplicationController
   end
 
   # borrow_book
-  def borrow_book
-    @book = Book.find(params[:id])
-    @book.borrow = true 
-    @book.user = session[:user_id] 
+  # def borrow_book
+  #   @book = Book.find(params[:id])
+  #   @book.borrow = true 
+  #   @book.user = session[:user_id] 
 
-    if @book.borrow && (@book.user_id != current_user.id)
-      redirect_to @book, notice: 'book wass borrowed'
-    else  
-      render :show 
-    end 
-  end 
+  #   if @book.save! && (@book.user_id != current_user.id)
+  #     redirect_to @book, notice: 'book wass borrowed'
+  #   else  
+  #     render :show 
+  #   end 
+  # end 
 
-  # return_book 
-  def return_book
-    @book = Book.find(params[:id])
-    @book.return = true 
-    @book.user = session[:user_id]
+  # # return_book 
+  # def return_book
+  #   @book = Book.find(params[:id])
+  #   @book.return = true 
+  #   @book.user = session[:user_id]
     
-    if @book.save!
-      redirect_to @book, notice: 'book was return'
-    else  
-      render :show
-    end 
-  end 
+  #   if @book.save!
+  #     redirect_to @book, notice: 'book was return'
+  #   else  
+  #     render :show
+  #   end 
+  # end 
 
   # POST /books
   # POST /books.json
