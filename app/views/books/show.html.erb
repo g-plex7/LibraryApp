@@ -7,8 +7,14 @@
         <p><%= @book.isbn %></p>          
 
           <p id="notice"><%= notice %></p>
-          <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
-          <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
+         
+         
+
+          <% if @book.user_id == current_user.id %>
+            <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
+          <% else %>
+            <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %>
+          <% end %>
       </div>
     </div>
   </div>

@@ -1,32 +1,43 @@
-<%= form_with(model: book, local: true) do |form| %>
-  <% if book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+<section class="hero is-fullheight">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<div class="columns is-8 is-variable ">
+					<div class="column is-one-third">
+						<div class="field">
+						<%= form_with(model: book, local: true) do |form| %>
+              <% if book.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
 
-      <ul>
-        <% book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+                  <ul>
+                    <% book.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+              <div class="field">
+                <%= form.label :title %>
+                <%= form.text_field :title, :class => "input is-medium" %>
+              </div>
 
-  <div class="field">
-    <%= form.label :isbn %>
-    <%= form.text_field :isbn %>
-  </div>
+              <div class="field">
+                <%= form.label :isbn %>
+                <%= form.text_field :isbn, :class => "input is-medium" %>
+              </div>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
-  </div>
+              <div class="field">
+                <%= form.label :author %>
+                <%= form.text_field :author, :class => "input is-medium" %>
+              </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+              <div class="actions">
+                <%= form.submit "Insert Book", :class => "button is-link is-fullwidth has-text-weight-medium is-medium" %>
+              </div>
+            <% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
