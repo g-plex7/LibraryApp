@@ -4,9 +4,10 @@ class BorrowingController < ApplicationController
         @has_borrowed = Book.where(user_id: session[:user_id]).exists?
         # @has_borrowed = true
         @book.borrow = true  
+        @book.return = false 
         @book.user_id = session[:user_id]
 
-        if @book.save! && (@book.user_id != current_user.id)
+        if @book.save!
             redirect_to @book, notice: "Book was Borrowed"
         else 
             render :show 

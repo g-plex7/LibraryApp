@@ -8,13 +8,15 @@
 
           <p id="notice"><%= notice %></p>
          
-        <% if @borrow_book %>
-          <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>
+        <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %> 
+        <% if @has_borrowed %>
+         
         <% else %>
-          <%= link_to 'borrow', borrow_book_path(:id => @book.id), :class => "button is-success" %> 
+           <%= link_to 'return', return_book_path(:id => @book.id), :class => "button is-link" %>  
         <% end  %>
              
-          
+        
+            
       </div>
     </div>
   </div>
